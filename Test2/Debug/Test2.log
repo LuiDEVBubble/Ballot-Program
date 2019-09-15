@@ -1,0 +1,9 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(411,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Test.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Main.cpp
+  VoterList.cpp
+C:\Users\luisg\source\repos\Test2\Test2\VoterList.cpp(43): warning C4018: '<': signed/unsigned mismatch
+C:\Users\luisg\source\repos\Test2\Test2\VoterList.cpp(164): warning C4018: '<': signed/unsigned mismatch
+C:\Users\luisg\source\repos\Test2\Test2\VoterList.cpp(199): warning C4018: '<': signed/unsigned mismatch
+  VoterRecord.cpp
+  Generating Code...
+  Test2.vcxproj -> C:\Users\luisg\source\repos\Test2\Debug\Voter Ballot Program.exe
