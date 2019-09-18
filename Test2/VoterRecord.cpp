@@ -31,3 +31,4 @@ void VoterRecord::MutateVotes(string Votes)
 {
 	votes = Votes;
 }
+

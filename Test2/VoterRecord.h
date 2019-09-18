@@ -25,8 +25,11 @@ public:
 	// First Accessor - returns ID
 	string AccessVoterID() const;
 
+	
+
 	// Second Accessor - gets Votes
 	string AccessVotes() const;
+
 
 	// Mutator that changes ID
 	void MutateVoterID(string);

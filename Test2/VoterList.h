@@ -18,6 +18,8 @@ private:
 
 
 public:
+
+	
 	//change votes
 	void SetVote(); 
 
@@ -35,8 +37,8 @@ public:
 
 	VoterList(); // Constructor
 
-	void MainMenu();
-
+	
+	
 
 
 	//vector<VoterRecord> vectorlist;

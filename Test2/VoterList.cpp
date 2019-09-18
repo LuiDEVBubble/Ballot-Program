@@ -22,19 +22,12 @@ VoterList::VoterList()
 		cerr << "There was something wrong!";
 		exit(1);
 	}
-	
 
-	
 	while (inFile >> voterID >> votes)
 	{
-
 		VoterRecord line(voterID, votes);
 		vectorlist.push_back(line);
 	}
-
-	
-	
-
 }
 
 void VoterList::printVector()
@@ -46,116 +39,90 @@ void VoterList::printVector()
 		cout << "Voter Votes:  " << vectorlist[i].AccessVotes() << endl;
 
 		cout << endl;
-
-	}
-	char choice2;
-	string choice;
-	cout << "Would you like to return to the Main Menu?:   (Y/N)\n";
-	cin >> choice2;
-	if (choice2 == 'Y')
-	{
-		MainMenu();
-	}
-	else if (choice2 == 'N')
-	{
-		cout << "Program will now close!!!!!!! " << endl;
-		return exit(1);
-	}
-	else
-	{
-		cout << "Sorry, could you choose 'Y'(yes) or 'N'(no)\n";
-		cout << "Program will now close!!!!!!!\n\n\n\n";
-		return exit(1);
-
 	}
 }
 
 void VoterList::AddNewRecord()
 {
+	bool Running = true;
+	bool Running2 = true;
 	string voterID, votes;
 	string C1, C2, C3, C4;
 
-
-
-	for (int i = 0; i < 1; i++)
-	{
-		cout << "\nEnter the New Voter ID:   ";
-		cin >> voterID;
-		cout << "Enter the New votes:  ";
-		cout << "\n1. VOTE FOR MAYOR\n		" << endl;
-		cout << "		A. Pincher, Penny" << endl;
-		cout << "		B. Dover, Skip" << endl;
-		cout << "		C. Perman, Sue" << endl;
-		cin >> C1;
-		cout << "\n2. PROPOSITION 17" << endl;
-		cout << "		D. Yes" << endl;
-		cout << "		E. No" << endl;
-		cin >> C2;
-		cout << "\n3. MEASURE 1" << endl;
-		cout << "		F. Yes" << endl;
-		cout << "		G. No" << endl;
-		cin >> C3;
-		cout << "\n4. MEASURE 2" << endl;
-		cout << "		H. Yes" << endl;
-		cout << "		I. No" << endl;
-		cin >> C4;
-
-
-		votes = C1 + C2 + C3 + C4;
-
-		VoterRecord line(voterID, votes);
-		vectorlist.push_back(line);
-		cout << endl;
-	}
-
-	cout << endl;
-	char choice;
-	char choice2;
-
-	cout << "Would you like your receipt?:   (Y/N)\n";
-
-	cin >> choice;
-	if (choice == 'Y')
-	{
-		cout << "****************************************************************" << endl;
-		cout << "\nYour Voter ID is:   " << voterID << " And your Votes were:   " << votes;
-		cout << "\n****************************************************************" << endl;
-		cout << endl;
-		MainMenu();
-
-	}
-	else if (choice == 'N')
-	{
-		cout << "Would you like to return to the main menu?:   (Y/N)\n";
-		cin >> choice2;
-		if (choice2 == 'Y')
+	int size = vectorlist.size();
+	while (Running) {
+		for (int i = 0; i < 1; i++)
 		{
-			MainMenu();
+			cout << "\nEnter the New Voter ID:   ";
+			cin >> voterID;
+			
+				for (unsigned int j = 0; j < size; j++) {
+
+					if (voterID == vectorlist[j].AccessVoterID())
+					{
+						cout << "Sorry, that vote already exists!" << endl;
+						return AddNewRecord();
+					}
+				}
+			
+			cout << "Enter the New votes:  ";
+			cout << "\n1. VOTE FOR MAYOR\n		" << endl;
+			cout << "		A. Pincher, Penny" << endl;
+			cout << "		B. Dover, Skip" << endl;
+			cout << "		C. Perman, Sue" << endl;
+			cin >> C1;
+			cout << "\n2. PROPOSITION 17" << endl;
+			cout << "		D. Yes" << endl;
+			cout << "		E. No" << endl;
+			cin >> C2;
+			cout << "\n3. MEASURE 1" << endl;
+			cout << "		F. Yes" << endl;
+			cout << "		G. No" << endl;
+			cin >> C3;
+			cout << "\n4. MEASURE 2" << endl;
+			cout << "		H. Yes" << endl;
+			cout << "		I. No" << endl;
+			cin >> C4;
+
+			votes = C1 + C2 + C3 + C4;
+
+			VoterRecord line(voterID, votes);
+			vectorlist.push_back(line);
+			cout << endl;
 		}
-		else if (choice2 == 'N')
+
+		cout << endl;
+		char choice;
+		char choice2;
+
+		cout << "Would you like your receipt?:   (Y/N)\n";
+
+		cin >> choice;
+		if (choice == 'Y')
 		{
-			cout << "Program will now close!!!!!!! " << endl;
+			cout << "****************************************************************" << endl;
+			cout << "\nYour Voter ID is:   " << voterID << " And your Votes were:   " << votes;
+			cout << "\n****************************************************************" << endl;
+			cout << endl;
+			Running = false;
+
+		}
+		else if (choice == 'N')
+		{
+			Running = false;
+		}
+		else
+		{
+			cout << "Sorry, could you choose 'Y'(yes) or 'N'(no)\n";
+			cout << "Program will now close!!!!!!!\n\n\n\n";
 			return exit(1);
+
 		}
-
 	}
-	else
-	{
-		cout << "Sorry, could you choose 'Y'(yes) or 'N'(no)\n";
-		cout << "Program will now close!!!!!!!\n\n\n\n";
-		return exit(1);
-
-	}
-
-	
-
-
 }
 
 void VoterList::Query() 
 {
-
-	
 	string oldID;
 	string choice;
 	cout << "What is your ID number?:   " << endl;
@@ -170,22 +137,7 @@ void VoterList::Query()
 			cout << endl;
 		
 		}
-
-
 	}
-	cout << "would you like to return to main menu or exist? (Y/N)";
-	cin >> choice;
-	if (choice == "Y")
-	{
-		MainMenu();
-	}
-	else
-	{
-		cout << "Fine! I'll just kick you out the program!!";
-		return exit(1);
-	}
-	
-
 }
 
 void VoterList::SetVote()
@@ -198,13 +150,10 @@ void VoterList::SetVote()
 	int size = vectorlist.size();
 	for (unsigned int i = 0; i < size; i++)
 	{
-
-	
 		if (oldID == vectorlist[i].AccessVoterID())
 		{
 			Answer = true;
-			for (int i = 0; i < 1; i++)
-			{
+			
 				cout << "Enter the New votes:  ";
 				cout << "\n1. VOTE FOR MAYOR\n		" << endl;
 				cout << "		A. Pincher, Penny" << endl;
@@ -224,19 +173,11 @@ void VoterList::SetVote()
 				cout << "		I. No" << endl;
 				cin >> C4;
 
-				
-
 				votes = C1 + C2 + C3 + C4;
-
 				
-				vectorlist[i].AccessVotes().assign(votes);
+				vectorlist[i].MutateVotes(votes);
 				
-					
-				VoterRecord line(oldID, votes);
-				//vectorlist.assign(line).AccessVotes();
 				cout << endl;
-
-			}
 		}
 		
 	}
@@ -255,21 +196,10 @@ void VoterList::SetVote()
 			cout << "\nYour Voter ID is:   " << oldID << " And your New Votes are:   " << votes;
 			cout << "\n****************************************************************" << endl;
 			cout << endl;
-			MainMenu();
+			
 		}
 		else if (choice == 'N')
 		{
-			cout << "Would you like to return to the main menu?:   (Y/N)\n";
-			cin >> choice2;
-			if (choice2 == 'Y')
-			{
-				MainMenu();
-			}
-			else if (choice2 == 'N')
-			{
-				cout << "Program will now close!!!!!!! " << endl;
-				return exit(1);
-			}
 
 		}
 		else
@@ -282,65 +212,9 @@ void VoterList::SetVote()
 	}
 	else
 	{
+		cout << endl;
+		cout << "That ID does not exist!" << endl << endl;
 		SetVote();
 	}
-
-
-
-
 }
 
-void VoterList::MainMenu()
-{
-string FirstName;
-int NumChoice;
-
-cout << "What's your First name?     ";
-cin >> FirstName;
-cout << "	\nHey " << FirstName << " What can the Vote Record program do for you today?" << endl;
-cout << "	Please choose one of the following options:\n\n\n";
-cout << "	1) Query a voter's record given the voter's ID.\n";
-cout << "	2) Add a new voter's record and print the receipt.\n";
-cout << "	3) Modify a voter's record given the voter's ID and print the modified receipt.\n";
-cout << "	4) Print the voting statistics to the screen, that is, the percent of votes\n" << "	   cast for each candidate, proposition, and measure.\n";
-cout << "	5) Print the sorted list of voter records.\n";
-cout << "	6) Exit the program.\n\n\n";
-cin >> NumChoice;
-if (NumChoice == 1)
-{
-	Query();
-
-}
-else if (NumChoice == 2)
-{
-	AddNewRecord();
-}
-else if (NumChoice == 3)
-{
-	SetVote();
-}
-else if (NumChoice == 4)
-{
-	exit(1);//Statistics(vectorlist);
-}
-else if (NumChoice == 5)
-{
-	printVector();
-
-}
-else if (NumChoice == 6)
-{
-	exit(1);
-}
-else
-{
-	cout << "Sorry, what you typed was invalid, please try again" << endl << endl;
-
-}
-}
-//void VoterList::Statistics()
-//{
-//	
-//	if (vectorlist[0] == 'A')
-//	
-//}
